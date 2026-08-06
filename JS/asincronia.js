@@ -117,7 +117,7 @@ async function mostrarClima(){
 
 mostrarClima()*/
 
-function consultarSaldo() {
+/*function consultarSaldo() {
     return new Promise ((resolve) => {
     setTimeout(() => {
         resolve(125000)    
@@ -147,7 +147,7 @@ async function mostrarUsuario(){
 
 mostrarUsuario()*/
 
-function obtenerUsuario(){
+/*function obtenerUsuario(){
     return new Promise ((resolve) => {
         setTimeout(() => {
             resolve({
@@ -165,4 +165,28 @@ async function mostrarUsuario(){
     console.log(usuario)
 }
 
-mostrarUsuario()
+mostrarUsuario()*/
+
+/*async function prueba(){
+    const respuesta = await fetch("https://jsonplaceholder.typicode.com/users")
+    console.log(respuesta)
+}
+
+prueba()*/
+
+async function obtenerPosts(){
+    const respuesta = await fetch ("https://jsonplaceholder.typicode.com/posts")
+    const posts = await respuesta.json()
+    return(posts)
+}
+
+function mostrarPosts(pots){
+    console.log(pots [4])
+}
+
+async function iniciar(){
+    const posts = await obtenerPosts()
+    mostrarPosts(posts)
+}
+
+iniciar()
