@@ -189,4 +189,5 @@ async function iniciar(){
     mostrarPosts(posts)
 }
 
+
 iniciar()
