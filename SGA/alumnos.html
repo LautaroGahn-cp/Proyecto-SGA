@@ -18,20 +18,23 @@
     </header>
     <main>
         <p>Proyecto de Programacion</p>
-        <section>
-            <form id="formAlumno">
-                <label for="nombre">Nombre: </label>
-                <input type="text" id="nombre"><br><br>
-
-            <label for="carrera">Carrera: </label>
-                <input type="text" id="carrera"><br><br>
-
-                <label for="Correo">Correo Elecftronico: </label>
-                <input type="texto" id="correo"><br><br>
-
+        <section class="formulario-container">
+            <h2>Alta de alumno</h2>
+            <form id="formulario">
+                <div class="campo">
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" id="nombre"><br><br> 
+                </div>
+                <div class="campo">
+                    <label for="carrera">Carrera: </label>
+                    <input type="text" id="carrera"><br><br>
+                </div>
+                <div class="campo">
+                    <label for="Correo">Correo Elecftronico: </label>
+                    <input type="texto" id="correo"><br><br>
+                </div>
                 <button type="submit">Guardar Alumno</button>
             </form>
-            <p id="mensaje" class="oculto"></p>
         </section>
         <section> 
             <h2>Alumnos Registrados</h2>
@@ -49,6 +52,7 @@
                 <tbody id="listaAlumnos"></tbody>
             </table>
         </section>
+        <div id="mensaje" class="mesj"></div>
     </main>  
 </body>
 </html>
