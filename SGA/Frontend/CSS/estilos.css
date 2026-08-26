@@ -155,11 +155,15 @@ th {
 }
 
 .mje-error{
-    color: red;
+    background-color: red;
 }
 
-.mje-texto{
-    color: green;
+.mje-exito{
+    background-color: green;
+}
+
+.mje-adv{
+    background-color: lightyellow;
 }
 
 .btn-editar, .btn-eliminar {
@@ -240,4 +244,17 @@ th {
 .tarjeta-deshabilitada:hover {
     transform: none;
     box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.acciones-form{
+    display: flex;
+    gap: 10px;
+}
+
+.btn-cancelar{
+    background-color: lightslategray;
+}
+
+.btn-cancelar:hover{
+    background-color: #666;
 }

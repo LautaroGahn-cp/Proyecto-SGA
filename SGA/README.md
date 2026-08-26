@@ -2,6 +2,35 @@
 
 Proyecto desarrollado durante la materia Programación IV.
 
+clase 10 estrucutura actual
+SGA/
+|______HTML/
+|           |____index.html
+|           |____alumnos.html
+|           |____docentes.html
+|
+|______CSS/
+|           |____estilo.css
+|
+|
+|______JS/
+|        |_______alumnos.js
+|        |_______docentes.js
+|
+|
+## Estado actual del proyecto 
+-Pagina de inicio y navegacion
+-Modulo alumno-docente
+-CRUD alumno/docente
+-Peresistencia mediante localStorage
+-Organizacion del codigo y refactorizacion
+-Separacion inicial entre frontend y backend
+
+## Alamacenamiento
+
+-localStorage
+-json.stingify()
+-json.parse()
 
 ## Descripción
 
@@ -45,10 +74,7 @@ Próximamente:
 - MongoDB
 
 
-## Estado del proyecto
-
 🚧 En desarrollo.
-
 
 
 ## Autor

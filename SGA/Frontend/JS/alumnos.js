@@ -57,6 +57,9 @@ iniciar()*/
 const formulario = document.querySelector("#formulario")
 const mensaje = document.querySelector("#mensaje")
 const listaAlumnos = document.querySelector("#listaAlumnos")
+const btnCancelar = document.querySelector("#btnCancelar")
+const btnGuardar = document.querySelector("#btnGuardar")
+btnCancelar.style.display = "none";
 let alumnoEditandoId = null;
 let alumnoEditar = null; 
 
@@ -111,12 +114,11 @@ formulario.addEventListener("submit", function(event){
             mostrarMensaje("No se realizaron cambios", "mje-error")
         }*/
     if (JSON.stringify(datosActuales) === JSON.stringify(alumnoEditar)){
-        mostrarMensaje("No se realizaron cambios", "mje-error")
-        return
+        mostrarMensaje("No se realizaron cambios", "mje-adv")
     }
     alumnoEditandoId = null
     alumnoEditar = null
-    formulario.querySelector("button").textContent = "Guardar Alumno"
+    btnGuardar.textContent = "Guardar Alumno"
 
     mostrarMensaje("Alumno actualizado correctamente", "mje-exito")
 }  
@@ -168,9 +170,9 @@ function eliminarAlumno(id){
     if (alumnoEditandoId === id){
         formulario.reset()
         alumnoEditandoId = null
-        formulario.querySelector("button").textContent = "Guardar alumno"
+        btnGuardar.textContent = "Guardar alumno"
     }
-    mostrarMensaje("Alumno eliminado correctamente")
+    mostrarMensaje("Alumno eliminado correctamente", "mje-exito")
 }
 
 listaAlumnos.addEventListener("click", (e) =>{
@@ -203,9 +205,20 @@ function eidtarAlumno(id){
     }
 
     alumnoEditandoId = id;
-    formulario.querySelector("button").textContent = "Actualizar Alumno"
+    btnCancelar.style.display = "inline-block"
+    btnGuardar.textContent = "Actualizar Alumno"
     document.querySelector("#nombre").focus()
 }
+
+function cancelarEdicion(){
+    formulario.reset()
+    alumnoEditandoId = null
+    alumnoEditar = null
+    btnGuardar.textContent = "Guardar Alumno"
+    btnCancelar.style.display = "none"
+}
+
+btnCancelar.addEventListener("click", cancelarEdicion)
 
 const alumnos = obtenerAlumnos()
 mostrarAlumnos(alumnos)
