@@ -1,5 +1,6 @@
 const express = require("express") //llamar al paquete instalado
 const app = express()
+app.use(express.json())
 
 const alumnos = [
     {
@@ -12,7 +13,14 @@ const alumnos = [
         id: 2,
         nombre: "José",
         carrera: "Sistema"
+    },
+
+    {
+        id: "3",
+        nombre: "Lucia",
+        carrera: "Perito Mercantil"
     }
+
 ]
 
 
@@ -63,6 +71,21 @@ app.get("/alumnos/:id", (req, res) => {
     const alumno = alumnos.find(a => a.id === id)
     res.json(alumno)
 })   
+
+app.post("/alumnos", (req, res) => {
+    const nuevoAlumno = req.body
+    alumnos.push(nuevoAlumno)
+    res.json({mensaje: "alumno registrado correctamente"})
+})
+
+app.put("/alumnos/:id", (req, res) =>{
+    const id = Number(req.params.id)
+    const alumno = alumnos.find(alumno => alumno.id === id) //compara alumno id con el id del params
+    alumno.id = req.body.id
+    alumno.nombre = req.body.nombre
+    alumno.carrera = req.body.carrera
+    res.json({mensaje: "Alumno actualizado correctamente"})
+})
 
 
 app.get ("/docentes", (req, res) => {
