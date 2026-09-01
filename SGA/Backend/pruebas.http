@@ -8,7 +8,7 @@ POST  http://localhost:3000/alumnos
 Content-Type: application/json
 
 {
-    "id": 3,
+    "id": 4,
     "nombre": "Lucia",
     "carrera": "Perito Mercantil"
 }
@@ -24,3 +24,7 @@ Content-Type: application/json
 
 ###
 GET http://localhost:3000/alumnos/5
+###
+DELETE http://localhost:3000/alumnos/5
+###
+USE http://localhost:3000/alumnos/5

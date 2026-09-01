@@ -1,8 +1,15 @@
 const express = require("express") //llamar al paquete instalado
 const app = express()
 app.use(express.json())
+const alumnosRoutes = require("./routes/alumnos.routes")
+const docentesRoutes = require("./routes/docentes.routes")
+app.use("/alumnos", alumnosRoutes)
+app.use("/docentes", docentesRoutes)
 
-const alumnos = [
+
+
+//La sentencia const no se puede modificar
+let alumnos = [
     {
         id: 1,
         nombre: "Ana",
@@ -16,7 +23,7 @@ const alumnos = [
     },
 
     {
-        id: "3",
+        id: 3,
         nombre: "Lucia",
         carrera: "Perito Mercantil"
     }
@@ -58,45 +65,13 @@ const docentes = [
     
 ]
 
-
-
-
-app.get("/alumnos", (req, res) => {   //Ruta donde se tomara la informacion  //req = request/pregunta/solicitud, res = respond/responder
-    res.json(alumnos)
-})   
-
-
-app.get("/alumnos/:id", (req, res) => { 
-    const id = Number(req.params.id)
-    const alumno = alumnos.find(a => a.id === id)
-    res.json(alumno)
-})   
-
-app.post("/alumnos", (req, res) => {
-    const nuevoAlumno = req.body
-    alumnos.push(nuevoAlumno)
-    res.json({mensaje: "alumno registrado correctamente"})
+//creo un middleware
+app.use((req, res, next) =>{
+    console.log(req.method);
+    console.log(req.url);
+    //next();
 })
 
-app.put("/alumnos/:id", (req, res) =>{
-    const id = Number(req.params.id)
-    const alumno = alumnos.find(alumno => alumno.id === id) //compara alumno id con el id del params
-    alumno.id = req.body.id
-    alumno.nombre = req.body.nombre
-    alumno.carrera = req.body.carrera
-    res.json({mensaje: "Alumno actualizado correctamente"})
-})
-
-
-app.get ("/docentes", (req, res) => {
-    res.json(docentes)
-})
-
-app.get("/docentes/:id", (req, res) => {
-    const id = Number(req.params.id)
-    const docente = docentes.find(d => d.id === id)   // ahora "docentes" refiere al array de arriba
-    res.json(docente)
-})
 
 app.listen(3000, () =>{      //el que escucha las solicitudes. (numero donde empieza a escuchar las solicitudes)
     console.log("Servidor funcionando en http://localhost:3000")
