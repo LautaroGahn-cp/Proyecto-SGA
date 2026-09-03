@@ -18,5 +18,46 @@
             <a href="docentes.html" class="activo">Docentes</a>    
         </nav>
     </header>
+    <main>
+        <p>Proyecto de Programacion</p>
+        <section class="formulario-container">
+            <h2>Alta de Docentes</h2>
+            <form id="formDocente">
+                <div class="campo">
+                    <label for="nombre">Nombre: </label>
+                    <input type="text" id="nombreDocente"><br><br> 
+                </div>
+                <div class="campo">
+                    <label for="carrera">Especialidad: </label>
+                    <input type="text" id="especialidad"><br><br>
+                </div>
+                <div class="campo">
+                    <label for="Correo">Correo Elecftronico: </label>
+                    <input type="texto" id="correo"><br><br>
+                </div>
+                <div class="acciones-form">
+                    <button type="submit" id="btnGuardar">Guardar Alumno</button>
+                    <button type="button" id="btnCancelar" class="btn-cancelar">Cancelar</button>
+                </div>
+            </form>
+        </section>
+        <section class="lista-container"> 
+            <h2>Alumnos Registrados</h2>
+            <p id="cantidadAlumnos"></p>
+            <table>
+                <thead>
+                    <tr>
+                        <th>ID</th>
+                        <th>Nombre</th>
+                        <th>Especialidad</th>
+                        <th>Correo</th>
+                        <th>Acciones</th>
+                    </tr>
+                </thead>
+                <tbody id="listaDocentes"></tbody>
+            </table>
+        </section>
+        <div id="mensajeDocente" class="mesj"></div>
+    </main>  
 </body>
 </html>
