@@ -25,7 +25,11 @@ SGA/
 -Peresistencia mediante localStorage
 -Organizacion del codigo y refactorizacion
 -Separacion inicial entre frontend y backend
-
+-Implementacion de validaciones para los datos recibidos mediante req.body
+-Uso de status 400 para datos invaidos
+-Uso de status 404 para alumno no encontrado
+-Uso status 201 para regisatrar nuevo alumno
+-Manejo basico de errores en las operaciones de CRUD
 ## Alamacenamiento
 
 -localStorage
@@ -60,7 +64,6 @@ Durante el desarrollo del proyecto se incorporarán progresivamente nuevas tecno
 Actualmente:
 - HTML5
 
-Próximamente:
 - CSS3
 
 - JavaScript
@@ -71,6 +74,7 @@ Próximamente:
 
 - Express
 
+proximamente
 - MongoDB
 
 
