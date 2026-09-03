@@ -6,32 +6,6 @@ const docentesRoutes = require("./routes/docentes.routes")
 app.use("/alumnos", alumnosRoutes)
 app.use("/docentes", docentesRoutes)
 
-
-
-//La sentencia const no se puede modificar
-let alumnos = [
-    {
-        id: 1,
-        nombre: "Ana",
-        carrera: "Programacion"
-    },
-
-    {
-        id: 2,
-        nombre: "José",
-        carrera: "Sistema"
-    },
-
-    {
-        id: 3,
-        nombre: "Lucia",
-        carrera: "Perito Mercantil"
-    }
-
-]
-
-
-
 const docentes = [
     {
         id: 1,
@@ -69,7 +43,7 @@ const docentes = [
 app.use((req, res, next) =>{
     console.log(req.method);
     console.log(req.url);
-    //next();
+    next();
 })
 
 

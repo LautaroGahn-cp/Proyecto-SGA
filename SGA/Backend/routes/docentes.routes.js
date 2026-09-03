@@ -1,5 +1,5 @@
 const express  = require ("express")
-const { obtenerDocentes } = require("../controllers/docentes.controller")
+const { obtenerDocentes } = require("../controllers/docentes.cotroller")
 const router = express.Router()
 
 router.get("/", obtenerDocentes) 
@@ -31,4 +31,4 @@ router.delete("/:id", (req, res) =>{
     res.json({mensaje: "Docente eliminado correctamente"})
 })
 
-module.export = router
+module.exports = router
