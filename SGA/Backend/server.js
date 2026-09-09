@@ -6,8 +6,7 @@ const docentesRoutes = require("./routes/docentes.routes")
 app.use("/alumnos", alumnosRoutes)
 app.use("/docentes", docentesRoutes)
 const conectarBD = require("./confing/database")
-
-conectarDB()
+conectarBD()
 
 const docentes = [
     {

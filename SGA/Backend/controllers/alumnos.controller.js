@@ -1,6 +1,7 @@
-const alumnos = require("../data/alumnos")
+const Alumno = require ("../models/Alumno")
 
-function obtenerAlumnos(req, res){  //Ruta donde se tomara la informacion  //req = request/pregunta/solicitud, res = respond/responder
+async function obtenerAlumnos(req, res){  //Ruta donde se tomara la informacion  //req = request/pregunta/solicitud, res = respond/responder
+    const alumnos = await Alumno.find()
     res.json(alumnos)
 }
 

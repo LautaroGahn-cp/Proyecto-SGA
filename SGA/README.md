@@ -30,11 +30,19 @@ SGA/
 -Uso de status 404 para alumno no encontrado
 -Uso status 201 para regisatrar nuevo alumno
 -Manejo basico de errores en las operaciones de CRUD
+-Instalacon de Mongoose
+-Creacion de la conexion con MongoDB en confing/database.js
+-Creacion de Schema y Modelo
+-Remplazo de la array de memoria por una coneccion de mongoDB 
+-Modificacion de GET /alumnos para consultar mongoDB mediante mongoose
+-Prueba de API con datos almacenados en MongoDB
+
 ## Alamacenamiento
 
 -localStorage
 -json.stingify()
 -json.parse()
+-MongoDB
 
 ## Descripción
 
@@ -74,9 +82,10 @@ Actualmente:
 
 - Express
 
-proximamente
 - MongoDB
 
+Proximamente
+- React
 
 🚧 En desarrollo.
 
