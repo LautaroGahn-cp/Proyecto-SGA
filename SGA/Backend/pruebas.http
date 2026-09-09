@@ -15,7 +15,7 @@ Content-Type: application/json
     "carrera": "Perito Mercantil"
 }
 ###
-PUT  http://localhost:3000/alumnos/44
+PUT  http://localhost:3000/alumnos/4
 Content-Type: application/json
 
 {

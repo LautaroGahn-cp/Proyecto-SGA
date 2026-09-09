@@ -5,6 +5,9 @@ const alumnosRoutes = require("./routes/alumnos.routes")
 const docentesRoutes = require("./routes/docentes.routes")
 app.use("/alumnos", alumnosRoutes)
 app.use("/docentes", docentesRoutes)
+const conectarBD = require("./confing/database")
+
+conectarDB()
 
 const docentes = [
     {
@@ -40,11 +43,11 @@ const docentes = [
 ]
 
 //creo un middleware
-app.use((req, res, next) =>{
+/*app.use((req, res, next) =>{
     console.log(req.method);
     console.log(req.url);
     next();
-})
+})*/
 
 
 app.listen(3000, () =>{      //el que escucha las solicitudes. (numero donde empieza a escuchar las solicitudes)
