@@ -4,18 +4,35 @@ Proyecto desarrollado durante la materia Programación IV.
 
 clase 10 estrucutura actual
 SGA/
-|______HTML/
-|           |____index.html
-|           |____alumnos.html
-|           |____docentes.html
+|__Backend/
+|  |______.config/
+|  |      |______database.js
+|  |
+|  |______.routes/
+|  |      |______routes.js
+|  |
+|  |______.controllers/
+|  |      |___________alumnos.controller.js
+|  |
+|  |______.data/
+|  |      |____alumnos.js
+|  |
+|  |______.models/
+|  |      |______Alumno.js
 |
-|______CSS/
-|           |____estilo.css
-|
-|
-|______JS/
-|        |_______alumnos.js
-|        |_______docentes.js
+|__Frontend/
+|  |_______HTML/
+|  |         |_____index.html
+|  |         |_____alumnos.html
+|  |         |_____docentes.html
+|  |
+|  |_______CSS/
+|  |        |_____estilo.css
+|  |       
+|  |
+|  |_______JS/
+|          |________alumnos.js
+|          |________docentes.js
 |
 |
 ## Estado actual del proyecto 

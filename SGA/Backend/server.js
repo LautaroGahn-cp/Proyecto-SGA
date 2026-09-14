@@ -6,7 +6,10 @@ const docentesRoutes = require("./routes/docentes.routes")
 app.use("/alumnos", alumnosRoutes)
 app.use("/docentes", docentesRoutes)
 const conectarBD = require("./confing/database")
+require("dotenv").config()
+const PORT = process.env.PORT
 conectarBD()
+console.log ("Ejecutado nodemon")
 
 const docentes = [
     {
@@ -49,7 +52,7 @@ const docentes = [
 })*/
 
 
-app.listen(3000, () =>{      //el que escucha las solicitudes. (numero donde empieza a escuchar las solicitudes)
-    console.log("Servidor funcionando en http://localhost:3000")
+app.listen(PORT, () =>{      
+    console.log(`Servidor funcionando en http://localhost:${PORT}`)
 }) 
     
