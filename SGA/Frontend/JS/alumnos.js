@@ -63,6 +63,10 @@ btnCancelar.style.display = "none";
 let alumnoEditandoId = null;
 let alumnoEditar = null; 
 
+/*async function cargarAlumnos(){
+    const respuesta = await fetch("http://locahost:3000/alumnos")
+    const alumnos = await respuesta
+}*/
 
 formulario.addEventListener("submit", function(event){
     event.preventDefault();
@@ -129,8 +133,10 @@ formulario.addEventListener("submit", function(event){
     formulario.reset()
 });
 
-function obtenerAlumnos(){
-    return obtenerDatos("alumnos")
+async function obtenerAlumnos(){
+    const respuesta = await fetch("http://locahost:3000/alumnos")
+    const alumnos = await respuesta.json()
+    return alumnos 
 }
 
 
@@ -220,5 +226,9 @@ function cancelarEdicion(){
 
 btnCancelar.addEventListener("click", cancelarEdicion)
 
-const alumnos = obtenerAlumnos()
-mostrarAlumnos(alumnos)
+async function iniciar(){
+    const alumnos = await obtenerAlumnos()
+    mostrarAlumnos(alumnos)
+}
+
+iniciar()
