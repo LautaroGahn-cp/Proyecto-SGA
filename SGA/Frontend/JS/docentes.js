@@ -1,16 +1,22 @@
 const formulario = document.querySelector("#formDocente")
 const mensaje = document.querySelector("#mensajeDocente")
 const listaDocentes = document.querySelector("#listaDocentes")
-let docenteEditandoId = null
+let docenteEditandoLegajo = null;
+let docenteEditar = null; 
+const btnCancelar = document.querySelector("#btnCancelar")
+btnCancelar.style.display = "none";
+const btnGuardar = document.querySelector("#btnGuardar")
+const API_DOCENTES = "http://localhost:3000/docentes"
 
-formulario.addEventListener("submit", function (event) {
+formulario.addEventListener("submit", async function (event) {
     event.preventDefault();
 
+    const legajo = document.querySelector("#legajo").value.trim()
     const nombre = document.querySelector("#nombreDocente").value.trim()
     const especialidad = document.querySelector("#especialidad").value.trim()
     const correo = document.querySelector("#correo").value.trim()
 
-    if (nombre === "" || especialidad === "" || correo === "") {
+    if (legajo === ""||nombre === "" || especialidad === "" || correo === "") {
         mostrarMensaje("Todos los campos son obligatorios", "mje-error")
         return
     }
@@ -25,65 +31,99 @@ formulario.addEventListener("submit", function (event) {
         return
     }
 
-    const docentes = obtenerDocentes()
-
-    if (docenteEditandoId === null) {
+    try{
+        //POST
+        if (docenteEditandoLegajo === null) {
         const docente = {
-            id: Date.now(),
+            legajo: Number(legajo),
             nombre: nombre,
             especialidad: especialidad,
             correo: correo
         }
-        docentes.push(docente)
-        mostrarMensaje("Docente guardado correctamente", "mje-exito")
-    } else {
-        const docente = docentes.find(docente => docente.id === docenteEditandoId)
-        docente.nombre = nombre
-        docente.especialidad = especialidad
-        docente.correo = correo
-        docenteEditandoId = null
-        formulario.querySelector("button").textContent = "Guardar Docente"
+        const respuesta = await fetch (API_DOCENTES, {
+            method: "POST",
+            headers: {
+            "Content-type": "application/json"
+            },
+            body: JSON.stringify(docente)
+        })
+        if (!respuesta.ok){
+            throw new Error ("La API respondio con un error")
+        }
+        mostrarMensaje("Docente guardado correctamente", "mje-exito")  
+        }else { //put
+        const datosActuales = {
+            nombre: nombre,
+            especialidad: especialidad,
+            correo: correo,
+        }
 
-        mostrarMensaje("Docente actualizado correctamente", "mje-exito")
+        if (JSON.stringify(datosActuales) === JSON.stringify(docenteEditar)){
+            mostrarMensaje("No se realizaron cambios", "mje-adv")
+        }
+
+        const respuesta = await fetch (`${API_DOCENTES}/${docenteEditandoLegajo}`, {
+            method: "PUT",
+            headers: {
+                "Content-type": "application/json"
+            },
+            body: JSON.stringify({
+                nombre: nombre,
+                especialidad: especialidad,
+                correo: correo,
+            })
+        })
+    
+        if (!respuesta.ok){
+            throw new Error ("La API respondio con un error")
+        }
+        docenteEditandoLegajo = null
+        docenteEditar = null
+        btnGuardar.textContent = "Guardar docente"
+        document.querySelector("#legajo").disabled = false
+        mostrarMensaje("docente actualizado correctamente", "mje-exito")
+        }  
+        await actualizarListaDocentes()
+        formulario.reset()
+    } catch (error){
+        console.error(error.message)
+        mostrarMensaje("No fue realizada la operacion", "mje-error")
     }
-    localStorage.setItem("docentes", JSON.stringify(docentes))
-    mostraDocentes(docentes)
-    formulario.reset()
+    
 });
 
 
-function obtenerDocentes() {
-   return obtenerDatos("Docentes")
+async function obtenerDocentes(){
+    try{
+        const respuesta = await fetch(API_DOCENTES)
+        const docentes = await respuesta.json()
+        return docentes 
+    } catch (error){
+        console.error(error.message)
+        throw error
+    }
 }
 
-function mostrarMensaje(texto, tipo) {
-    mensaje.textContent = texto;
-    mensaje.className = tipo
-    setTimeout(() => {
-        mensaje.textContent = " ";
-        mensaje.className = "oculto"
-    }, 3000);
-}
 
-function mostraDocentes(docentes) {
+async function mostraDocentes(docentes) {
     listaDocentes.innerHTML = ""
     for (const docente of docentes) {
         listaDocentes.innerHTML += `
         <tr>
-            <td>${docente.id}</td>
+            <td>${docente.legajo}</td>
             <td>${docente.nombre}</td>
             <td>${docente.especialidad}</td>
             <td>${docente.correo}</td>
             <td>
                 <button 
                 class="btn-editar" 
-                data-id="${docente.id}"
+                data-legajo="${docente.legajo}"
                 title="Editar docente">
                 <i class="fa-solid fa-pen"></i>
                 </button>
                 <button 
                 class="btn-eliminar" 
-                data-id="${docente.id}"
+                data-legajo="${docente.legajo}"
                 title="Eliminar docente">
                 <i class="fa-solid fa-trash"></i>
                 </button>
@@ -92,47 +132,89 @@ function mostraDocentes(docentes) {
         `;
     }
 }
-function eliminarDocente(id) {
-    const docentes = obtenerDocentes()
-    const docentesActualizados = docentes.filter(
-        docente => docente.id !== id
-    );
-    localStorage.setItem("docentes", JSON.stringify(docentesActualizados))
-    mostraDocentes(docentesActualizados)
-    if (docenteEditandoId === id){
+
+async function eliminarDocente(legajo){
+    const respuesta = await fetch (`${API_DOCENTES}/${legajo}`, {
+        method: "DELETE",
+    })
+    if (!respuesta.ok){
+        mostrarMensaje ("No se pudo eliminar el docente", "mje-error")
+        return
+    }
+    if (docenteEditandoLegajo === legajo){
         formulario.reset()
-        docenteEditandoId = null
-        formulario.querySelector("button").textContent = "Guardar docente"
+        docenteEditar = null
+        docenteEditandoLegajo = null
+        btnGuardar.textContent = "Guardar docente"
+        document.querySelector("#legajo").disabled = false
+        btnCancelar.style.display = "none"
+    
     }
     mostrarMensaje("Docente eliminado correctamente", "mje-exito")
+    await actualizarListaDocentes()
+}
+
+async function actualizarListaDocentes() {
+    const docentes = await obtenerDocentes()
+    mostraDocentes(docentes)
 }
 
 listaDocentes.addEventListener("click", (e) => {
     const boton_el = e.target.closest(".btn-eliminar")
     if (boton_el) {
-        const id = Number(boton_el.dataset.id)
+        const legajo = Number(boton_el.dataset.legajo)
         const confirmar = confirm("¿Está seguro de eliminar este docente?")
         if (confirmar) {
-        eliminarDocente(id)
+        eliminarDocente(legajo)
         }
     }
     const boton_ed = e.target.closest(".btn-editar")
     if (boton_ed) {
-        const id = Number(boton_ed.dataset.id)
-        editarDocente(id)
+        const legajo = Number(boton_ed.dataset.legajo)
+        editarDocente(legajo)
     }
 })
 
-function editarDocente(id) {
-    const docentes = obtenerDocentes()
-    const docente = docentes.find(docente => docente.id === id)
-    document.querySelector("#nombre").value = docente.nombre;
+async function editarDocente(legajo){
+    const docentes = await obtenerDocentes()
+    const docente = docentes.find(docente => docente.legajo === legajo)
+    
+    if(!docente){
+        mostrarMensaje("Docente no encontrado", "mje-error")
+        return
+    }
+    document.querySelector("#legajo").value = docente.legajo;
+    document.querySelector("#legajo").disabled = true;
+    document.querySelector("#nombreDocente").value = docente.nombre;
     document.querySelector("#especialidad").value = docente.especialidad;
     document.querySelector("#correo").value = docente.correo;
-    docenteEditandoId = id;
-    formulario.querySelector("button").textContent = "Actualizar Docente"
-    document.querySelector("#nombre").focus()
+
+    docenteEditar = {
+        nombre: docente.nombre,
+        especialidad: docente.especialidad,
+        correo: docente.correo
+    }
+
+    docenteEditandoLegajo = legajo;
+    btnCancelar.style.display = "inline-block"
+    btnGuardar.textContent = "Actualizar Docente"
+    document.querySelector("#nombreDocente").focus()
 }
 
-const docentes = obtenerDocentes()
-mostraDocentes(docentes)  
+function cancelarEdicion(){
+    formulario.reset()
+    docenteEditandoLegajo = null
+    docenteEditar = null
+    btnGuardar.textContent = "Guardar docente"
+    document.querySelector("#legajo").disabled = false
+    btnCancelar.style.display = "none"
+    document.querySelector("#legajo").focus()
+}
+
+btnCancelar.addEventListener("click", cancelarEdicion)
+
+async function iniciar(){
+    await actualizarListaDocentes()
+}
+
+iniciar()
