@@ -7,16 +7,40 @@
 //import { Cambiartitulo } from "./componentes/ejemplos/Cambiartitulo"
 //import Incrementar from "./componentes/ejemplos/Incrementar"
 //import { Tamanotexto } from "./componentes/ejemplos/Tamanotexto"
-import { FormularioA } from "./componentes/FormularioA"
+//import { FormularioA } from "./componentes/FormularioA"
+import { useEffect, useState } from "react"
+//import { Pantalla } from "./componentes/Pantalla"
+
+
 
 
 
 function App()
 {
+  const [nombre, setNombre] = useState("")
   
+  useEffect(() => {
+    if (nombre){
+      document.title = `Hola ${nombre}`
+    }else{
+      document.title = "Mi aplicacion"
+    }
+  }, [nombre])
   return(
     <>
-    {/* <Navbar />
+    <input
+    value = {nombre}
+    onChange = {(e) => setNombre(e.target.value)}
+    placeholder="Escribir tu nombre"
+    />
+    <h2>Hola {nombre}</h2>
+    </>
+  )
+}
+
+export default App
+
+{/* <Navbar />
     <Titulo texto="Docentes"  color="magenta" />
     <h2>Administracion de Alumnos</h2>
     <TarjetaAlumno 
@@ -39,9 +63,25 @@ function App()
     {/* <Adivina /> */}
     {/* <Cambiarmsj  /> 
     <Tamanotexto /> */}
-    <FormularioA />
-    </>
-  )
-}
+    {/* <FormularioA /> */}
+    {/* <Pantalla /> */}
 
-export default App
+  //const [contador, setContador] = useState(0)
+  // const [alumno] = useState({
+  //   nombre: "Ana",
+  //   curso: "Programacion IV"
+  // })
+  // useEffect(()=>{
+  //   document.title = `Alumno: ${alumno.nombre}`
+  // }, [alumno])
+
+  // useEffect(()=>{
+  //   document.title = `Contador: ${contador}`
+  // }, [contador])
+  
+  // return(
+  //   <>
+  //     <h2>{contador}</h2>
+  //     <button onClick={() => setContador (contador + 1)}></button>
+  //   </>
+  // )
