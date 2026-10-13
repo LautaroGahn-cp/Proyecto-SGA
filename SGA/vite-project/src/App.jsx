@@ -8,8 +8,10 @@
 //import Incrementar from "./componentes/ejemplos/Incrementar"
 //import { Tamanotexto } from "./componentes/ejemplos/Tamanotexto"
 //import { FormularioA } from "./componentes/FormularioA"
-import { useEffect, useState } from "react"
+//import { useEffect, useState } from "react"
 //import { Pantalla } from "./componentes/Pantalla"
+
+import { ListaAlumnos } from "./componentes/ListaAlumnos"
 
 
 
@@ -17,28 +19,26 @@ import { useEffect, useState } from "react"
 
 function App()
 {
-  const [nombre, setNombre] = useState("")
-  
-  useEffect(() => {
-    if (nombre){
-      document.title = `Hola ${nombre}`
-    }else{
-      document.title = "Mi aplicacion"
-    }
-  }, [nombre])
   return(
     <>
-    <input
-    value = {nombre}
-    onChange = {(e) => setNombre(e.target.value)}
-    placeholder="Escribir tu nombre"
-    />
-    <h2>Hola {nombre}</h2>
+    <ListaAlumnos/>
     </>
-  )
+  )  
 }
 
 export default App
+
+
+
+
+
+
+
+
+
+
+
+
 
 {/* <Navbar />
     <Titulo texto="Docentes"  color="magenta" />
@@ -83,5 +83,25 @@ export default App
   //   <>
   //     <h2>{contador}</h2>
   //     <button onClick={() => setContador (contador + 1)}></button>
+  //   </>
+  // )
+
+  //const [nombre, setNombre] = useState("")
+  
+  // useEffect(() => {
+  //   if (nombre){
+  //     document.title = `Hola ${nombre}`
+  //   }else{
+  //     document.title = "Mi aplicacion"
+  //   }
+  // }, [nombre])
+  // return(
+  //   <>
+  //   <input
+  //   value = {nombre}
+  //   onChange = {(e) => setNombre(e.target.value)}
+  //   placeholder="Escribir tu nombre"
+  //   />
+  //   <h2>Hola {nombre}</h2>
   //   </>
   // )
