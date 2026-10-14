@@ -7,11 +7,11 @@
 //import { Cambiartitulo } from "./componentes/ejemplos/Cambiartitulo"
 //import Incrementar from "./componentes/ejemplos/Incrementar"
 //import { Tamanotexto } from "./componentes/ejemplos/Tamanotexto"
-//import { FormularioA } from "./componentes/FormularioA"
+import { FormularioA } from "./componentes/FormularioA"
 //import { useEffect, useState } from "react"
 //import { Pantalla } from "./componentes/Pantalla"
 
-import { ListaAlumnos } from "./componentes/ListaAlumnos"
+//import { ListaAlumnos } from "./componentes/ListaAlumnos"
 
 
 
@@ -21,7 +21,8 @@ function App()
 {
   return(
     <>
-    <ListaAlumnos/>
+    <FormularioA /> 
+    {/* <ListaAlumnos/> */}
     </>
   )  
 }
@@ -63,7 +64,6 @@ export default App
     {/* <Adivina /> */}
     {/* <Cambiarmsj  /> 
     <Tamanotexto /> */}
-    {/* <FormularioA /> */}
     {/* <Pantalla /> */}
 
   //const [contador, setContador] = useState(0)
