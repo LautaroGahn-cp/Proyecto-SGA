@@ -2,7 +2,7 @@ import { useState } from "react";
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 
-export function FormularioA(){
+export function FormularioA({onAlumnoCreado}){
     const [formulario, setFormulario] = useState({
         legajo: "",
         nombre: "",
@@ -34,7 +34,7 @@ export function FormularioA(){
             }
             const respuesta = await fetch(API_ALUMNOS, {
                 method: "POST",
-                headers: {"Content-Type":"apliccation/json"},
+                headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(alumno)
             })
             if(!respuesta.ok){
@@ -46,6 +46,7 @@ export function FormularioA(){
                 carrera: "",
                 correo: ""
             })
+            onAlumnoCreado()
         } catch(error){
             console.error("Error al guardar el alumno:", error)
             setError(error.message || "No se puedo conectar con el servidor")
@@ -91,7 +92,7 @@ export function FormularioA(){
                 onChange={manejarCambio}
                 required
             />
-            <button type="sumbit" disabled={guardando}>
+            <button type="submit" disabled={guardando}>
                 {guardando ? "Guardando..." : "Guardar"}
             </button>
             <br />

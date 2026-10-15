@@ -7,11 +7,10 @@
 //import { Cambiartitulo } from "./componentes/ejemplos/Cambiartitulo"
 //import Incrementar from "./componentes/ejemplos/Incrementar"
 //import { Tamanotexto } from "./componentes/ejemplos/Tamanotexto"
-import { FormularioA } from "./componentes/FormularioA"
-//import { useEffect, useState } from "react"
 //import { Pantalla } from "./componentes/Pantalla"
-
-//import { ListaAlumnos } from "./componentes/ListaAlumnos"
+import { FormularioA } from "./componentes/FormularioA"
+import { useState } from "react"
+import { ListaAlumnos } from "./componentes/ListaAlumnos"
 
 
 
@@ -19,11 +18,15 @@ import { FormularioA } from "./componentes/FormularioA"
 
 function App()
 {
+  const [actualizar, setActualizar] = useState("")
+  function alumnoCreado(){
+    setActualizar(valor => valor+1)
+  }
   return(
-    <>
-    <FormularioA /> 
-    {/* <ListaAlumnos/> */}
-    </>
+    <main>
+    <FormularioA onAlumnoCreado={alumnoCreado}/> 
+    <ListaAlumnos actualizar={actualizar}/> 
+    </main>
   )  
 }
 
