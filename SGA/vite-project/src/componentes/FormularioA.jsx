@@ -2,12 +2,12 @@ import { useState } from "react";
 const API_ALUMNOS = "http://localhost:3000/alumnos"
 
 
-export function FormularioA({onAlumnoCreado}){
+export function FormularioA({onAlumnoCreado, alumnoEditar, onCancelar}){
     const [formulario, setFormulario] = useState({
-        legajo: "",
-        nombre: "",
-        carrera: "",
-        correo: ""
+        legajo: String(alumnoEditar?.legajo ?? ""),
+        nombre: alumnoEditar?.nombre ?? "",
+        carrera: alumnoEditar?.carrera ?? "",
+        correo: alumnoEditar?.correo ?? ""
     })
 
     const [error, setError] = useState("")
@@ -26,14 +26,16 @@ export function FormularioA({onAlumnoCreado}){
         e.preventDefault()
         setError("")
         setGuardando(true)
+    const editando = Boolean(alumnoEditar)
+    const url = editando?`${API_ALUMNOS}/${alumnoEditar.legajo}` : API_ALUMNOS
 
         try{
             const alumno ={
                 ...formulario,
                 legajo: Number(formulario.legajo)
             }
-            const respuesta = await fetch(API_ALUMNOS, {
-                method: "POST",
+            const respuesta = await fetch(url, {
+                method: editando ? "PUT" : "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify(alumno)
             })
@@ -57,6 +59,7 @@ export function FormularioA({onAlumnoCreado}){
 
     return(
         <>
+        <h2></h2>
         <form onSubmit={guardar}>
             <label htmlFor="legajo">legajo</label>
             <input 
@@ -93,8 +96,13 @@ export function FormularioA({onAlumnoCreado}){
                 required
             />
             <button type="submit" disabled={guardando}>
-                {guardando ? "Guardando..." : "Guardar"}
+                {guardando ? "Guardando..." : alumnoEditar ? "Guardar cambios" : "Guardar"}
             </button>
+            {alumnoEditar && (
+                <button type="button" onClick={onCancelar} disabled={guardando}>
+                    Cancelar
+                </button>
+            )}
             <br />
             {error && <p role="alert">{error}</p>}
         </form> 

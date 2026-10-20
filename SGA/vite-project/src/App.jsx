@@ -32,7 +32,8 @@ function App()
     <main>
     <FormularioA key={alumnoEditar?.legajo ?? "nuevo"}
     onAlumnoCreado={alumnoCreado}
-    alumnoEditar={alumnoEditar}/> 
+    alumnoEditar={alumnoEditar}
+    onCancelar={() => setAlumnoEditar(null)}/> 
     <ListaAlumnos actualizar={actualizar}
     onAlumnoCreado={alumnoCreado}
     onEditarAlumno={seleccionarAlumno}/> 
