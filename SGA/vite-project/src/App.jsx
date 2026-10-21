@@ -8,35 +8,30 @@
 //import Incrementar from "./componentes/ejemplos/Incrementar"
 //import { Tamanotexto } from "./componentes/ejemplos/Tamanotexto"
 //import { Pantalla } from "./componentes/Pantalla"
-import { FormularioA } from "./componentes/FormularioA"
-import { useState } from "react"
-import { ListaAlumnos } from "./componentes/ListaAlumnos"
-
-
+//import { FormularioA } from "./componentes/FormularioA"
+//import { useState } from "react"
+//import { ListaAlumnos } from "./componentes/ListaAlumnos"
+//import { Ejemplo_MUI } from "./componentes/ejemplos/Ejemplo_MUI"
+import { FAQ } from "./componentes/ejemplos/FAQ"
 
 
 
 function App()
 {
-  const [actualizar, setActualizar] = useState(0)
-  const [alumnoEditar, setAlumnoEditar] = useState(null)
-  function alumnoCreado(){
-    setActualizar(valor => valor+1)
-    setAlumnoEditar(null)
-  }
+  //const [actualizar, setActualizar] = useState(0)
+  //const [alumnoEditar, setAlumnoEditar] = useState(null)
+  //function alumnoCreado(){
+    //setActualizar(valor => valor+1)
+    //setAlumnoEditar(null)
+  //}
 
-  function seleccionarAlumno(alumno){
-    setAlumnoEditar(alumno)
-  }
+  //function seleccionarAlumno(alumno){
+    //setAlumnoEditar(alumno)
+ // }
   return(
     <main>
-    <FormularioA key={alumnoEditar?.legajo ?? "nuevo"}
-    onAlumnoCreado={alumnoCreado}
-    alumnoEditar={alumnoEditar}
-    onCancelar={() => setAlumnoEditar(null)}/> 
-    <ListaAlumnos actualizar={actualizar}
-    onAlumnoCreado={alumnoCreado}
-    onEditarAlumno={seleccionarAlumno}/> 
+      {/* <Ejemplo_MUI /> */}
+      <FAQ />
     </main>
   )  
 }
@@ -119,3 +114,15 @@ export default App
   //   <h2>Hola {nombre}</h2>
   //   </>
   // )
+
+
+
+  // <main>
+    // <FormularioA key={alumnoEditar?.legajo ?? "nuevo"}
+    // onAlumnoCreado={alumnoCreado}
+    // alumnoEditar={alumnoEditar}
+    // onCancelar={() => setAlumnoEditar(null)}/> 
+    // <ListaAlumnos actualizar={actualizar}
+    // onAlumnoCreado={alumnoCreado}
+    // onEditarAlumno={seleccionarAlumno}/> 
+    // </main>
