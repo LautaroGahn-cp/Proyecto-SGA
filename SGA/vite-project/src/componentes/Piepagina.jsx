@@ -1,9 +1,7 @@
-export function Piepagina(){
+export default function Piepagina(){
     return(
         <footer>
-            Derechos reservados de la pagina.
+           <p> Sistema de Gestion Academica, Derechos reservados de la pagina.</p> 
         </footer>
     )
 }
-
-// export default Piepagina
