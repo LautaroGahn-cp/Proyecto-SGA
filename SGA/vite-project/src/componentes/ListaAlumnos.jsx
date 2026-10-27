@@ -67,7 +67,7 @@ export function ListaAlumnos({actualizar, onAlumnoCreado, onEditarAlumno}){
                 <li key = {alumno.legajo}> 
                     {alumno.legajo} - {alumno.nombre} - {alumno.carrera}
                     <br />
-                    <button type="button" onClick={() => onEditarAlumno(alumno)}>Cancelar</button>
+                    <button type="button" onClick={() => onEditarAlumno(alumno)}>Editar</button>
                     <button type="button" onClick={() => eliminarAlumnos(alumno.legajo)}>Eliminar</button>
                 </li>
                 ))}

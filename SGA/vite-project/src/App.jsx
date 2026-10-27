@@ -1,9 +1,10 @@
 import Alumnos from "./pages/Alumnos"
-import { FAQ } from "./componentes/ejemplos/FAQ"
+import { FAQ } from "./pages/FAQ"
 //import SelectorTema from "./componentes/SelectorTema"
 import { Route, Routes } from "react-router-dom"
 import LayoutPpal from "./layout/LayoutPpal"
-import {Inicio} from "./pages/inicio"
+import Inicio from "./pages/Inicio"
+import Docentes from "./pages/Docentes"
 
 
 
@@ -15,6 +16,7 @@ function App()
         <Route index element={<Inicio />} />
         <Route path="/alumnos" element={<Alumnos />} />
         <Route path="/ayuda" element={<FAQ />} />
+        <Route path="docentes" element = {<Docentes/>} />
         </Route>
     </Routes>    
   )  
