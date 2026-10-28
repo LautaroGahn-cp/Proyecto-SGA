@@ -1,6 +1,6 @@
-import {ListaDocentes} from "../componentes/ListaDocentes"
+import {ListaDocentes} from "../componentes/ListaDocente"
 import { useState} from "react"
-import {FormularioA} from "../componentes/FormularioA"
+import {FormularioD} from "../componentes/FormularioD"
 
 export default function Docentes() {
   const [actualizar, setActualizar] = useState(0)
@@ -18,7 +18,7 @@ export default function Docentes() {
 return(
 <>
   <main>
-    <FormularioA key={docenteEditar?.dni ?? "nuevo"}
+    <FormularioD key={docenteEditar?.dni ?? "nuevo"}
     onDocenteCreado={docenteCreado}
     docenteEditar={docenteEditar}
     onCancelar={() => setDocenteEditar(null)}/> 

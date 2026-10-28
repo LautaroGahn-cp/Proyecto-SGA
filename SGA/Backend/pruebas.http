@@ -33,3 +33,7 @@ DELETE http://localhost:3000/alumnos/1008
 
 ###
 USE http://localhost:3000/alumnos/5
+
+
+###
+GET http://localhost:3000/docente

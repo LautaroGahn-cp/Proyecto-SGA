@@ -24,7 +24,7 @@ async function crearAlumno(req, res){
     }
     if (typeof nombre != "string"){
         return res.status(400).json({
-            mensaje: "El noombre debe ser un texto"
+            mensaje: "El nombre debe ser un texto"
         })
     }
     if (typeof legajo !== "number"){

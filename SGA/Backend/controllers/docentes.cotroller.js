@@ -6,7 +6,7 @@ async function obtenerDocentes(req, res){  //Ruta donde se tomara la informacion
 }
 
 async function obtenerDocente(req, res){
-    const docente = await Docente.findOne ({legajo: Number(req.params.id)})
+    const docente = await Docente.findOne ({dni: Number(req.params.id)})
     if (!docente) {
         return res.status(404).json({
             mensaje: "Docente no encontrado"
@@ -16,24 +16,24 @@ async function obtenerDocente(req, res){
 } 
 
 async function crearDocente(req, res){
-    const {legajo, Nombre, Especialidad, Correo} = req.body
-    if (!legajo || !Nombre || !Especialidad || !Correo){
+    const {dni, nombre, especialidad, correo} = req.body
+    if (!dni || !nombre || !especialidad || !correo){
         return res.status(400).json({
             mensaje: "Todos los campos son obligatorios"
         })
     }
-    if (typeof Nombre != "string"){
+    if (typeof nombre != "string"){
         return res.status(400).json({
-            mensaje: "El noombre debe ser un texto"
+            mensaje: "El nombre debe ser un texto"
         })
     }
-    if (typeof legajo !== "number"){
+    if (typeof dni !== "Number"){
     return res.status(400).json({
-        mensaje: "El legajo debe ser un numero"
+        mensaje: "El DNI debe ser un numero"
     })
     }
     const existe = await Docente.findOne({
-        legajo
+        dni
     })
     if (existe){
         return res.status(400).json({
@@ -41,23 +41,23 @@ async function crearDocente(req, res){
         })
     }
     const nuevoDocente = await Docente.create({
-        legajo,
-        Nombre,
-        Especialidad,
-        Correo
+        dni,
+        nombre,
+        especialidad,
+        correo
     })
     res.status(201).json(nuevoDocente)
 }
 
 async function actualizarDocente(req, res){
-    const {Nombre, Especialidad, Correo} = req.body
+    const {nombre, especialidad, correo} = req.body
     const docente = await Docente.findOneAndUpdate(
-        {legajo: Number(req.params.id)},
-        {Nombre, Especialidad, Correo},
+        {dni: Number(req.params.id)},
+        {nombre, especialidad, correo},
         {returnDocument: "after"}
     )
     if (!docente){
-        res.status(404).jason({
+        res.status(404).json({
             mensaje: "Docente no encontrado"
         })
     }
@@ -66,10 +66,10 @@ async function actualizarDocente(req, res){
 
 async function eliminarDocente(req, res){
     const docente = await Docente.findOneAndDelete(
-        {legajo: Number(req.params.id)}
+        {dni: Number(req.params.id)}
     )
     if (!docente){
-        res.status(404).jason({
+        res.status(404).json({
             mensaje: "Docente no encontrado"
         })
     }

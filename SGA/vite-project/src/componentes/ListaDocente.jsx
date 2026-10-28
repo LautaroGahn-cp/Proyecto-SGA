@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-const API_DOCENTES = "http://localhost:3000/alumnos"
+const API_DOCENTES = "http://localhost:3000/docentes"
 
 export function ListaDocentes({actualizar, onDocenteCreado, onEditarDocente}){
     const [docente, setDocente] = useState([])

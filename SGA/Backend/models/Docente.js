@@ -1,7 +1,7 @@
 const mongoose = require("mongoose")
 
 const docenteSchema = new mongoose.Schema({
-    legajo: { 
+    dni: { 
         type: Number,
         unique: true
     },

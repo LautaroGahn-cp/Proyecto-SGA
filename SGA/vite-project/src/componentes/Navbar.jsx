@@ -3,6 +3,7 @@ export function Navbar (){
         <nav>
             <a href="#">Inicio</a>
             <a href="#">Alumno</a>
+            <a href ="#">Docente</a>
         </nav>
     )
 }
