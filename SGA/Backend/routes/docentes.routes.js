@@ -1,11 +1,16 @@
-const express  = require ("express")
-const { obtenerDocentes, obtenerDocente, crearDocente, eliminarDocente, actualizarDocente } = require("../controllers/docentes.cotroller")
-const router = express.Router()
+const express = require("express") 
+// const alumnosController = require("../controllers/alumnos.controller")
+const {obtenerDocentes, obtenerDocente, crearDocente, actualizarDocente, eliminarDocente } = require("../controllers/docentes.cotroller")
+const router = express.Router() 
 
 router.get("/", obtenerDocentes) 
-router.get("/:id", obtenerDocente)
-router.post("/", crearDocente)
-router.put("/:id", actualizarDocente)
-router.delete("/:id", eliminarDocente)
 
-module.exports = router
+router.get("/:id", obtenerDocente) 
+
+router.post("/", crearDocente) 
+
+router.put("/:id", actualizarDocente) 
+
+router.delete("/:id", eliminarDocente) 
+
+module.exports = router 
