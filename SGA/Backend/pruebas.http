@@ -48,3 +48,6 @@ Content-Type: application/json
     "especialidad": "Programación",
     "correo": "rocio@mail.com"
 }
+
+###
+GET http://localhost:3000/materias
