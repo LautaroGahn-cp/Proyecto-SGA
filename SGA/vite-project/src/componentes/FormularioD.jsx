@@ -4,9 +4,9 @@ const API_DOCENTE = "http://localhost:3000/docentes"
 
 export function FormularioD({onDocenteCreado, docenteEditar, onCancelar}){
     const [formulario, setFormulario] = useState({
-        legajo: String(docenteEditar?.legajo ?? ""),
+        dni: String(docenteEditar?.dni ?? ""),
         nombre: docenteEditar?.nombre ?? "",
-        carrera: docenteEditar?.especialidad ?? "",
+        especialidad: docenteEditar?.especialidad ?? "",
         correo: docenteEditar?.correo ?? ""
     })
 
@@ -27,12 +27,12 @@ export function FormularioD({onDocenteCreado, docenteEditar, onCancelar}){
         setError("")
         setGuardando(true)
     const editando = Boolean(docenteEditar)
-    const url = editando?`${API_DOCENTE}/${docenteEditar.legajo}` : API_DOCENTE
+    const url = editando?`${API_DOCENTE}/${docenteEditar.dni}` : API_DOCENTE
 
         try{
             const alumno ={
                 ...formulario,
-                legajo: Number(formulario.legajo)
+                dni: Number(formulario.dni)
             }
             const respuesta = await fetch(url, {
                 method: editando ? "PUT" : "POST",
@@ -43,9 +43,9 @@ export function FormularioD({onDocenteCreado, docenteEditar, onCancelar}){
                 throw new Error(`No se puedo guardar el docente. Estado HTTP: ${respuesta.status}`)
             } 
             setFormulario({
-                legajo:"",
+                dni:"",
                 nombre: "",
-                carrera: "",
+                especialidad: "",
                 correo: ""
             })
             onDocenteCreado()
@@ -80,7 +80,7 @@ export function FormularioD({onDocenteCreado, docenteEditar, onCancelar}){
 
             <label htmlFor="especialidad">Especialidad</label>
             <input 
-                id="carrera"
+                id="especialidad"
                 name="Especialidad"
                 value={formulario.especialidad}
                 onChange={manejarCambio}

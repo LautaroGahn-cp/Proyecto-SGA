@@ -1,16 +1,15 @@
 const express = require("express") 
-// const alumnosController = require("../controllers/alumnos.controller")
 const {obtenerMaterias,obtenerMateria,crearMateria,actualizarMateria,eliminarMateria} = require("../controllers/materias.controller")
 const router = express.Router() 
-
+ 
 router.get("/", obtenerMaterias) 
-
-router.get("/:id", obtenerMateria) 
-
+ 
+router.get("/:codigo", obtenerMateria) 
+ 
 router.post("/", crearMateria) 
-
-router.put("/:id", actualizarMateria) 
-
-router.delete("/:id", eliminarMateria) 
-
+ 
+router.put("/:codigo", actualizarMateria) 
+ 
+router.delete("/:codigo", eliminarMateria) 
+ 
 module.exports = router 

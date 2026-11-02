@@ -82,6 +82,8 @@ export default function Header() {
                         >
                             <Button component={Link} to="/" color="inherit">Inicio</Button>
                             <Button component={Link} to="/alumnos" color="inherit">Alumnos</Button>
+                            <Button component={Link} to="/docentes" color="inherit">Docentes</Button>
+                            <Button component={Link} to="/materias" color="inherit">Materias</Button>
                             <Button component={Link} to="/ayuda" color="inherit" aria-label="Ayuda">?</Button>
                         </Box>
                         <Box

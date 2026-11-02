@@ -49,5 +49,213 @@ Content-Type: application/json
     "correo": "rocio@mail.com"
 }
 
+
+### 1. Consultar todas las materias 
+GET http://localhost:3000/materias
+
+### 2. Registrar varias materias
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT001",
+    "nombre": "Matemáticas Básicas",
+    "descripcion": "Introducción a algebra y geometria",
+    "cargaHoraria": 80,
+    "estado": "activa"
+}
+
 ###
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT002",
+    "nombre": "Física General",
+    "descripcion": "Conceptos fundamentales de fisica",
+    "cargaHoraria": 100,
+    "estado": "activa"
+}
+
+### 3. Consultar una materia por su código /
+GET http://localhost:3000/materias/MAT001
+
+### 4. Consultar un código inexistente 
+GET http://localhost:3000/materias/MAT999
+
+### 5. Registrar una materia con todos los datos válidos
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT003",
+    "nombre": "Quimica Organica",
+    "descripcion": "Compuestos organicos y reacciones",
+    "cargaHoraria": 120,
+    "estado": "inactiva"
+}
+
+### 6. Sin código
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "",
+    "nombre": "Sin Codigo",
+    "descripcion": "Esta materia no tiene codigo",
+    "cargaHoraria": 60,
+    "estado": "activa"
+}
+
+### 7. Sin nombre
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT004",
+    "nombre": "",
+    "descripcion": "Esta materia no tiene nombre",
+    "cargaHoraria": 60,
+    "estado": "activa"
+}
+
+### 8. Sin carga horaria
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT005",
+    "nombre": "Materia sin carga horaria",
+    "descripcion": "Esta materia no tiene carga horaria",
+    "cargaHoraria": "",
+    "estado": "activa"
+}
+
+### 9a. Carga horaria cero
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT006",
+    "nombre": "Materia carga cero",
+    "descripcion": "Carga horaria cero",
+    "cargaHoraria": 0,
+    "estado": "activa"
+}
+
+### 9b. Carga horaria negativa
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT007",
+    "nombre": "Materia carga negativa",
+    "descripcion": "Carga horaria negativa",
+    "cargaHoraria": -10,
+    "estado": "activa"
+}
+
+### 9c. Carga horaria decimal
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT008",
+    "nombre": "Materia carga decimal",
+    "descripcion": "Carga horaria decimal",
+    "cargaHoraria": 45.5,
+    "estado": "activa"
+}
+
+### 10. Código duplicado
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT001",
+    "nombre": "Matemáticas Duplicada",
+    "descripcion": "Intento de duplicar",
+    "cargaHoraria": 80,
+    "estado": "activa"
+}
+
+### 11. Estado no permitido 
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT009",
+    "nombre": "Materia estado inválido",
+    "descripcion": "Estado no permitido",
+    "cargaHoraria": 60,
+    "estado": "Desconocido"
+}
+
+### 12. Modificar nombre y descripción 
+PUT http://localhost:3000/materias/MAT001
+Content-Type: application/json
+
+{
+    "nombre": "Matemáticas Avanzadas",
+    "descripcion": "algebra lineal y calculo multivariable",
+    "cargaHoraria": 80,
+    "estado": "activa"
+}
+
+### 13. Modificar carga horaria y estado 
+PUT http://localhost:3000/materias/MAT001
+Content-Type: application/json
+
+{
+    "nombre": "Matemáticas Avanzadas",
+    "descripcion": "Álgebra lineal y cálculo multivariable",
+    "cargaHoraria": 100,
+    "estado": "inactiva"
+}
+
+### 14. Modificar una materia inexistente
+PUT http://localhost:3000/materias/MAT999
+Content-Type: application/json
+
+{
+    "nombre": "Materia inexistente",
+    "descripcion": "Intento modificar materia inexistente",
+    "cargaHoraria": 50,
+    "estado": "activa"
+}
+
+### 15a. Crear MAT010
+POST http://localhost:3000/materias
+Content-Type: application/json
+
+{
+    "codigo": "MAT010",
+    "nombre": "Nueva materia",
+    "descripcion": "Materia para prueba de duplicado",
+    "cargaHoraria": 60,
+    "estado": "activa"
+}
+
+### 15b. Cambiar el código de MAT010 por el de MAT001
+PUT http://localhost:3000/materias/MAT010
+Content-Type: application/json
+
+{
+    "codigo": "MAT001",
+    "nombre": "Materia modificada",
+    "descripcion": "Intento cambiar código existente",
+    "cargaHoraria": 60,
+    "estado": "activa"
+}
+
+### 16a. Eliminar una materia existente /
+DELETE http://localhost:3000/materias/MAT002
+
+### 16b. Consultarla nuevamente
+GET http://localhost:3000/materias/MAT002
+
+### 17. Eliminar una materia inexistente
+DELETE http://localhost:3000/materias/MAT999
+
+### 18. Verificar los cambios
 GET http://localhost:3000/materias

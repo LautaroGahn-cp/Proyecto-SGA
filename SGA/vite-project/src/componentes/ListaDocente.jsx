@@ -20,8 +20,8 @@ export function ListaDocentes({actualizar, onDocenteCreado, onEditarDocente}){
             }
             onDocenteCreado()
         } catch(error){
-            console.error("Error al eliminar el alumno:", error)
-            alert(error.message || "No se puedo eliminar el alumno")
+            console.error("Error al eliminar el docente:", error)
+            alert(error.message || "No se puedo eliminar el docente")
             setError("No se puedo actualizar la lista")
         }
         finally{
@@ -42,7 +42,7 @@ export function ListaDocentes({actualizar, onDocenteCreado, onEditarDocente}){
                 setDocente(datos)
             }catch (error){
                 console.error("Error de conexion", error)
-                setError ("No se puede cargar la lista de alumnos")
+                setError ("No se puede cargar la lista de docentes")
             } finally {
                 setCargando(false)
             }
@@ -51,21 +51,21 @@ export function ListaDocentes({actualizar, onDocenteCreado, onEditarDocente}){
         cargarDocente()
     }, [actualizar])
     if (cargando){
-        return <p>Cargando alumnos...</p>
+        return <p>Cargando docentes...</p>
     }
     if (error){
         return <p role="alert">{error}</p>
     }
     return(
         <section>
-        <h2>Alumnos</h2>
+        <h2>Docentes</h2>
         {docente.length ===0 ?(
-            <p>No hay alumnos registrados</p>    
+            <p>No hay docentes registrados</p>    
         ):  (
             <ul style = {{listStyle:"none"}}>
-                {docente.map(alumno => (
-                <li key = {alumno.legajo}> 
-                    {alumno.legajo} - {alumno.nombre} - {alumno.carrera}
+                {docente.map(docente => (
+                <li key = {docente.dni}> 
+                    {docente.dni} - {docente.nombre} - {docente.especialidad}
                     <br />
                     <button type="button" onClick={() => onEditarDocente(docente)}>Editar</button>
                     <button type="button" onClick={() => eliminarDocente(docente.dni)}>Eliminar</button>
