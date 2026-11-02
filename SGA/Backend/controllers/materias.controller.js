@@ -79,10 +79,10 @@ async function crearMateria(req, res){
 
 
 async function actualizarMateria(req, res){
-    const {nombre, descripcion, cargaHoraria, estado} = req.body
+    const {codigo, nombre, descripcion, cargaHoraria, estado} = req.body
     const materia = await Materia.findOneAndUpdate(
         {codigo: String(req.params.codigo)},
-        {nombre, descripcion, cargaHoraria, estado},
+        {codigo, nombre, descripcion, cargaHoraria, estado},
         {returnDocument: "after"}
     )
     if (!materia){
@@ -95,7 +95,7 @@ async function actualizarMateria(req, res){
 
 async function eliminarMateria(req, res){
     const materia = await Materia.findOneAndDelete(
-        {codigo: String(req.params.id)}
+        {codigo: String(req.params.codigo)}
     )
     if (!materia){
         return res.status(404).json({

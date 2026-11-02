@@ -77,7 +77,7 @@ Content-Type: application/json
     "estado": "activa"
 }
 
-### 3. Consultar una materia por su código /
+### 3. Consultar una materia por su código 
 GET http://localhost:3000/materias/MAT001
 
 ### 4. Consultar un código inexistente 
@@ -208,7 +208,7 @@ Content-Type: application/json
 
 {
     "nombre": "Matemáticas Avanzadas",
-    "descripcion": "Álgebra lineal y cálculo multivariable",
+    "descripcion": "Algebra lineal y calculo multivariable",
     "cargaHoraria": 100,
     "estado": "inactiva"
 }
@@ -236,22 +236,22 @@ Content-Type: application/json
     "estado": "activa"
 }
 
-### 15b. Cambiar el código de MAT010 por el de MAT001
+### 15b. Cambiar el código de MAT010 por el de MAT011
 PUT http://localhost:3000/materias/MAT010
 Content-Type: application/json
 
 {
-    "codigo": "MAT001",
+    "codigo": "MAT011",
     "nombre": "Materia modificada",
     "descripcion": "Intento cambiar código existente",
     "cargaHoraria": 60,
     "estado": "activa"
 }
 
-### 16a. Eliminar una materia existente /
+### 16a. Eliminar una materia existente
 DELETE http://localhost:3000/materias/MAT002
 
-### 16b. Consultarla nuevamente
+### 16b. Consultar materia eliminada
 GET http://localhost:3000/materias/MAT002
 
 ### 17. Eliminar una materia inexistente
@@ -259,3 +259,13 @@ DELETE http://localhost:3000/materias/MAT999
 
 ### 18. Verificar los cambios
 GET http://localhost:3000/materias
+
+
+###
+POST http://localhost:3000/auth/login
+Content-Type: application/json
+
+{
+    "email": "admin@sga.com",
+    "password": "ClaveDePrueba123!"
+}

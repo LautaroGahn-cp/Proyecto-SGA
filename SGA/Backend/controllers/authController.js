@@ -1,4 +1,4 @@
-constUsuario = require("../models/Usuario")
+const Usuario = require("../models/Usuario")
 const bcrypt = require ("bcrypt")
 
 const login = async (req, res) => {
@@ -44,3 +44,5 @@ const login = async (req, res) => {
         })
     }
 }
+
+module.exports= {login}
