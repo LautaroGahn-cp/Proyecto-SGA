@@ -33,7 +33,8 @@ export function FormularioM({onMateriaCreado, materiaEditar, onCancelar}){
         try{
             const alumno ={
                 ...formulario,
-                codigo: Number(formulario.codigo)
+                codigo: String(formulario.codigo),
+                cargaHoraria: Number(formulario.cargaHoraria)
             }
             const respuesta = await fetch(url, {
                 method: editando ? "PUT" : "POST",
@@ -62,7 +63,7 @@ export function FormularioM({onMateriaCreado, materiaEditar, onCancelar}){
     return(
         <>
         <h2></h2>
-        <form onSubmit={guardar}>
+        <form className="sga-form sga-form--materia" onSubmit={guardar}>
             <label htmlFor="codigo">Codigo</label>
             <input 
                 id="codigo"
@@ -99,13 +100,17 @@ export function FormularioM({onMateriaCreado, materiaEditar, onCancelar}){
             />
 
             <label htmlFor="estado">Estado</label>
-            <input 
+            <select
                 id="estado"
                 name="estado"
                 value={formulario.estado}
                 onChange={manejarCambio}
                 required
-            />
+                >
+                <option value="">Seleccionar...</option>
+                <option value="activa">Activa</option>
+                <option value="inactiva">Inactiva</option>
+            </select>
             <button type="submit" disabled={guardando}>
                 {guardando ? "Guardando..." : materiaEditar ? "Guardar cambios" : "Guardar"}
             </button>

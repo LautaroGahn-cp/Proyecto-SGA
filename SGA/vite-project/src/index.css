@@ -90,11 +90,11 @@ main:has(> form) > h2:empty {
 main form,
 main section {
   min-width: 0;
-  padding: 28px;
+  padding: clamp(18px, 2.5vw, 30px);
   border: 1px solid var(--sga-border);
-  border-radius: 20px;
+  border-radius: 22px;
   background: var(--sga-surface);
-  box-shadow: 0 12px 32px rgb(22 43 70 / 7%);
+  box-shadow: 0 14px 36px rgb(22 43 70 / 8%);
 }
 
 main form {
@@ -106,10 +106,22 @@ main form {
 main form::before {
   margin-bottom: 8px;
   color: var(--sga-text);
-  content: "Datos del alumno";
+  content: "Datos del formulario";
   font-size: 1.35rem;
   font-weight: 650;
   line-height: 1.3;
+}
+
+main form.sga-form--alumno::before {
+  content: "Datos del alumno";
+}
+
+main form.sga-form--docente::before {
+  content: "Datos del docente";
+}
+
+main form.sga-form--materia::before {
+  content: "Datos de la materia";
 }
 
 main form label {
@@ -121,10 +133,10 @@ main form label {
 
 main form input {
   width: 100%;
-  min-height: 46px;
-  padding: 10px 12px;
+  min-height: 48px;
+  padding: 11px 14px;
   border: 1px solid var(--sga-border);
-  border-radius: 10px;
+  border-radius: 12px;
   outline: none;
   background: var(--sga-page);
   color: var(--sga-text);
@@ -137,12 +149,16 @@ main form input:focus {
   box-shadow: 0 0 0 3px color-mix(in srgb, var(--sga-accent) 20%, transparent);
 }
 
+main form input::placeholder {
+  color: var(--sga-muted);
+}
+
 main form button,
 main section button {
-  min-height: 42px;
+  min-height: 44px;
   padding: 9px 16px;
   border: 1px solid transparent;
-  border-radius: 10px;
+  border-radius: 11px;
   background: var(--sga-accent);
   color: var(--sga-button-text);
   cursor: pointer;
@@ -184,6 +200,17 @@ main section button + button:hover {
   color: var(--sga-text);
 }
 
+main section li button:last-of-type {
+  border-color: color-mix(in srgb, var(--sga-danger) 25%, transparent);
+  background: color-mix(in srgb, var(--sga-danger) 9%, var(--sga-surface));
+  color: var(--sga-danger);
+}
+
+main section li button:last-of-type:hover {
+  background: var(--sga-danger);
+  color: #fff;
+}
+
 main form br {
   display: none;
 }
@@ -208,13 +235,19 @@ main section li {
   display: flex;
   flex-wrap: wrap;
   align-items: center;
-  gap: 10px;
-  padding: 16px;
+  gap: 12px;
+  padding: 18px;
   border: 1px solid var(--sga-border);
-  border-radius: 14px;
+  border-radius: 16px;
   background: var(--sga-page);
   color: var(--sga-text);
   line-height: 1.6;
+  transition: border-color 150ms ease, box-shadow 150ms ease;
+}
+
+main section li:hover {
+  border-color: color-mix(in srgb, var(--sga-accent) 40%, var(--sga-border));
+  box-shadow: 0 6px 18px rgb(22 43 70 / 6%);
 }
 
 main section li button:first-of-type {
@@ -231,7 +264,7 @@ main section li button:first-of-type:hover {
 @media (max-width: 760px) {
   main {
     width: min(calc(100% - 32px), 560px);
-    padding: 32px 0 48px;
+    padding: 28px 0 48px;
   }
 
   main:has(> form) {
@@ -257,8 +290,17 @@ main section li button:first-of-type:hover {
     padding: 18px;
   }
 
+  main section li {
+    gap: 8px;
+    padding: 14px;
+  }
+
   main section li button:first-of-type {
     margin-left: 0;
+  }
+
+  main section li button {
+    flex: 1 1 auto;
   }
 }
 

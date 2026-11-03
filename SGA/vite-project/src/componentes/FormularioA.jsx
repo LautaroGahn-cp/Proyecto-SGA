@@ -60,7 +60,7 @@ export function FormularioA({onAlumnoCreado, alumnoEditar, onCancelar}){
     return(
         <>
         <h2></h2>
-        <form onSubmit={guardar}>
+        <form className="sga-form sga-form--alumno" onSubmit={guardar}>
             <label htmlFor="legajo">legajo</label>
             <input 
                 id="legajo"

@@ -57,7 +57,7 @@ export function ListaDocentes({actualizar, onDocenteCreado, onEditarDocente}){
         return <p role="alert">{error}</p>
     }
     return(
-        <section>
+        <section className="sga-lista sga-lista--docentes">
         <h2>Docentes</h2>
         {docente.length ===0 ?(
             <p>No hay docentes registrados</p>    

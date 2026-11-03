@@ -60,11 +60,11 @@ export function FormularioD({onDocenteCreado, docenteEditar, onCancelar}){
     return(
         <>
         <h2></h2>
-        <form onSubmit={guardar}>
+        <form className="sga-form sga-form--docente" onSubmit={guardar}>
             <label htmlFor="dni">DNI</label>
             <input 
                 id="dni"
-                name="DNI"
+                name="dni"
                 value={formulario.dni}
                 onChange={manejarCambio}
                 required
@@ -81,7 +81,7 @@ export function FormularioD({onDocenteCreado, docenteEditar, onCancelar}){
             <label htmlFor="especialidad">Especialidad</label>
             <input 
                 id="especialidad"
-                name="Especialidad"
+                name="especialidad"
                 value={formulario.especialidad}
                 onChange={manejarCambio}
                 required

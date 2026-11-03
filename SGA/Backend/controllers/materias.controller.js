@@ -1,4 +1,4 @@
-const Materia = require ("../models/Materia")
+const Materia = require("../models/Materia")
 
 
 async function obtenerMaterias(req, res){  //Ruta donde se tomara la informacion  //req = request/pregunta/solicitud, res = respond/responder

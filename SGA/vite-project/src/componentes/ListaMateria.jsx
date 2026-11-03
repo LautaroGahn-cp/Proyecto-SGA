@@ -6,13 +6,13 @@ export function ListaMaterias({actualizar, onMateriaCreado, onEditarMateria}){
     const [cargando, setCargando] = useState(true)
     const [error, setError] = useState("")
 
-    async function eliminarMateria(dni) {
+    async function eliminarMateria(codigo) {
         const confirmar = window.confirm("¿Estas seguro de querer eliminar el recurso?")
         if (!confirmar) {
             return
         } 
         try{
-            const respuesta = await fetch(`${API_MATERIAS}/${dni}`, {
+            const respuesta = await fetch(`${API_MATERIAS}/${codigo}`, {
                 method: "DELETE"
             })
             if (!respuesta.ok) {
@@ -57,18 +57,18 @@ export function ListaMaterias({actualizar, onMateriaCreado, onEditarMateria}){
         return <p role="alert">{error}</p>
     }
     return(
-        <section>
+        <section className="sga-lista sga-lista--materias">
         <h2>Materias</h2>
         {materia.length ===0 ?(
             <p>No hay materias registradas</p>    
         ):  (
             <ul style = {{listStyle:"none"}}>
                 {materia.map(materia=> (
-                <li key = {materia.legajo}> 
-                    {materia.legajo} - {materia.nombre} - {materia.carrera}
+                <li key = {materia.codigo}> 
+                    {materia.codigo} - {materia.nombre} - {materia.cargaHoraria} - {materia.estado}
                     <br />
                     <button type="button" onClick={() => onEditarMateria(materia)}>Editar</button>
-                    <button type="button" onClick={() => eliminarMateria(materia.dni)}>Eliminar</button>
+                    <button type="button" onClick={() => eliminarMateria(materia.codigo)}>Eliminar</button>
                 </li>
                 ))}
             </ul> 

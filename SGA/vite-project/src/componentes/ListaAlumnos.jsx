@@ -57,7 +57,7 @@ export function ListaAlumnos({actualizar, onAlumnoCreado, onEditarAlumno}){
         return <p role="alert">{error}</p>
     }
     return(
-        <section>
+        <section className="sga-lista sga-lista--alumnos">
         <h2>Alumnos</h2>
         {alumnos.length ===0 ?(
             <p>No hay alumnos registrados</p>    

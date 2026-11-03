@@ -29,7 +29,7 @@ export default function Header() {
                             "--sga-accent-hover": theme.palette.mode === "dark"
                                 ? theme.palette.primary.main
                                 : theme.palette.primary.dark,
-                            "--sga-button-text": "#17232d",
+                            "--sga-button-text": theme.palette.mode === "dark" ? "#fff" : "#17232d",
                             "--sga-button-hover-text": "#fff",
                             "--sga-soft": theme.palette.action.hover,
                             "--sga-danger": theme.palette.error.main,
@@ -50,23 +50,26 @@ export default function Header() {
                 >
                     <Toolbar
                         sx={{
-                            width: "min(calc(100% - 48px), 1120px)",
-                            minHeight: { xs: 76, sm: 88 },
+                            width: { xs: "calc(100% - 32px)", sm: "min(calc(100% - 48px), 1180px)" },
+                            minHeight: { xs: 104, sm: 88 },
                             mx: "auto",
                             px: "0 !important",
-                            display: "flex",
-                            flexWrap: "wrap",
-                            justifyContent: "space-between",
-                            columnGap: 3,
-                            rowGap: 1,
+                            display: "grid",
+                            gridTemplateColumns: { xs: "1fr auto", md: "auto 1fr auto" },
+                            gridTemplateAreas: {
+                                xs: '"brand theme" "nav nav"',
+                                md: '"brand nav theme"',
+                            },
+                            columnGap: { xs: 1, md: 3 },
+                            rowGap: { xs: 0.5, md: 0 },
                         }}
                     >
-                        <Box sx={{ display: "flex", alignItems: "center", gap: 1.5 }}>
+                        <Box sx={{ gridArea: "brand", display: "flex", alignItems: "center", gap: 1.5 }}>
                             <Box
                                 component="img"
                                 src="/sga-emblema.svg"
                                 alt="Emblema del Sistema de Gestión Académica"
-                                sx={{ width: 44, height: 44 }}
+                                sx={{ width: 42, height: 42, borderRadius: 2 }}
                             />
                             <Box
                                 component="span"
@@ -78,18 +81,35 @@ export default function Header() {
                         <Box
                             component="nav"
                             aria-label="Navegación principal"
-                            sx={{ display: "flex", alignItems: "center", gap: 0.5, flexWrap: "wrap" }}
+                            sx={{
+                                gridArea: "nav",
+                                display: "flex",
+                                alignItems: "center",
+                                justifyContent: { xs: "center", md: "flex-end" },
+                                gap: { xs: 0, sm: 0.5 },
+                                flexWrap: "wrap",
+                                "& .MuiButton-root": {
+                                    minWidth: 0,
+                                    px: { xs: 1, sm: 1.5 },
+                                    borderRadius: 2,
+                                    fontSize: { xs: "0.8rem", sm: "0.875rem" },
+                                    fontWeight: 600,
+                                    "&:hover": { bgcolor: "action.hover" },
+                                },
+                            }}
                         >
                             <Button component={Link} to="/" color="inherit">Inicio</Button>
                             <Button component={Link} to="/alumnos" color="inherit">Alumnos</Button>
                             <Button component={Link} to="/docentes" color="inherit">Docentes</Button>
                             <Button component={Link} to="/materias" color="inherit">Materias</Button>
-                            <Button component={Link} to="/ayuda" color="inherit" aria-label="Ayuda">?</Button>
+                            <Button component={Link} to="/ayuda" color="inherit" aria-label="Ayuda">Ayuda</Button>
                         </Box>
                         <Box
                             sx={{
+                                gridArea: "theme",
                                 display: "flex",
                                 alignItems: "center",
+                                justifyContent: "flex-end",
                                 "& > .MuiBox-root": { width: "auto", mb: 0 },
                             }}
                         >
