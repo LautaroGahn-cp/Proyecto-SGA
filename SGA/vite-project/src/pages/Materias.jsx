@@ -27,6 +27,4 @@ return(
     onEditarMateria={seleccionarMateria}/> 
     </main>
 </>
-)
-
-}
+)}

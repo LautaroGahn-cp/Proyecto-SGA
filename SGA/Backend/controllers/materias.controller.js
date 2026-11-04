@@ -43,7 +43,7 @@ async function crearMateria(req, res){
         })
     }
 
-    if (typeof cargaHoraria !== "number" || cargaHoraria < 0 || !Number.isInteger(cargaHoraria)){
+    if (typeof cargaHoraria !== "number" || cargaHoraria <= 0 || !Number.isInteger(cargaHoraria)){
         return res.status(400).json({
             mensaje: "La carga horaria debe ser un numero entero mayor a cero"
         })

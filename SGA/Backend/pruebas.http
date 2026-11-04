@@ -71,7 +71,7 @@ Content-Type: application/json
 
 {
     "codigo": "MAT002",
-    "nombre": "Física General",
+    "nombre": "Fisica General",
     "descripcion": "Conceptos fundamentales de fisica",
     "cargaHoraria": 100,
     "estado": "activa"
